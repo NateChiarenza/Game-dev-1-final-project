@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
     public GameObject rock;
     public int rockspeed = 500;
     private bool throwable = true;
-    Camera cam; 
+    Camera cam;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -50,8 +51,8 @@ public class Player : MonoBehaviour
     }
     void fire()
     {
-        GameObject bullet = Instantiate(rock, cam.transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().AddForce(cam.transform.forward * rockspeed);
+        GameObject bullet = Instantiate(rock, cam.transform.position + cam.transform.forward, cam.transform.rotation);
+        //bullet.GetComponent<Rigidbody>().AddForce(player.transform.position * rockspeed);
     }
     private IEnumerator timer()
     {
