@@ -11,7 +11,8 @@ public class navigate : MonoBehaviour
     public bool playerFound = false;
     public GameObject player;
     public float huntTime = 5.0f;
-    public float viewR = 3.0f;
+    public float viewR = 100.0f;
+    RaycastHit hitdata;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +25,13 @@ public class navigate : MonoBehaviour
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 lookPlayer = player.transform.position + transform.position;
-        if(Vector3.Dot(forward, lookPlayer) < .5 && Vector3.Dot(forward, lookPlayer) > -.5)
+        
+        if (Vector3.Dot(forward, lookPlayer) < 6 && Vector3.Dot(forward, lookPlayer) > -4 && Vector3.Distance(player.transform.position,transform.position) < 7)
         {
+            
+            // Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
             var ray = new Ray(this.transform.position, this.transform.forward);
-            RaycastHit hitdata;
+            
             if (Physics.SphereCast(ray, viewR, out hitdata, mask))
             {
 
@@ -92,7 +96,12 @@ public class navigate : MonoBehaviour
     }
     private IEnumerator Hunt()
     {
+      
         yield return new WaitForSeconds(huntTime);
-        playerFound = false;
+        if(hitdata.transform == null || hitdata.transform.gameObject.tag != "Player")
+        {
+            playerFound = false;
+        }
+       
     }
 }
