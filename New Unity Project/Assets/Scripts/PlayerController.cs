@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private float V = 0.0f;
     public float camHSpeed = 2.0f;
     public float camVSpeed = 2.0f;
-    private float cH = 0.0f;
+    private float cH = 90.0f;
     private float cV = 0.0f;
     
     Camera cam;

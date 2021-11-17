@@ -7,11 +7,14 @@ public class Player : MonoBehaviour
     public int hp;
     public int damage;
     public GameObject rock;
+    public GameObject arr;
     public int rockspeed = 500;
     private bool throwable = true;
     Camera cam;
     public GameObject hand;
-    int item = 1;
+    public int item = 1;
+    public GameObject Equip1;
+    public GameObject Equip2;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,17 +27,43 @@ public class Player : MonoBehaviour
         if(Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             item--;
+            if(item < 1)
+            {
+                item = 2;
+            }
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            item++;
+            item = (item +1) %3;
+            if (item == 0 )
+            {
+                item = 1;
+            }
         }
-        if (Input.GetAxis("Fire1") == 1 && throwable && item == 1)
+        if(item == 1)
         {
-            throwable = false;
-            fire();
-            StartCoroutine(timer());
+            Equip1.SetActive(true);
+            Equip2.SetActive(false);
+            if (Input.GetAxis("Fire1") == 1 && throwable)
+            {
+                throwable = false;
+                fire(1);
+                StartCoroutine(timer());
+            }
         }
+        
+        if(item == 2)
+        {
+            Equip1.SetActive(false);
+            Equip2.SetActive(true);
+            if (Input.GetAxis("Fire1") == 1 && throwable)
+            {
+                throwable = false;
+                fire(2);
+                StartCoroutine(timer());
+            }
+        }
+        
     }
 
     public void TakeDamage(int d)
@@ -43,12 +72,20 @@ public class Player : MonoBehaviour
 
         if(hp <= 0)
         {
-            Debug.Log("game over");
+            
         }
     }
-    void fire()
+    void fire(int type)
     {
-        GameObject bullet = Instantiate(rock, hand.transform.position + cam.transform.forward, cam.transform.rotation);
+        if(type == 1)
+        {
+            GameObject bullet = Instantiate(rock, hand.transform.position + cam.transform.forward, cam.transform.rotation);
+        }
+        if (type == 2)
+        {
+            GameObject arrow = Instantiate(arr, hand.transform.position + cam.transform.forward, cam.transform.rotation);
+        }
+
 
     }
     private IEnumerator timer()
