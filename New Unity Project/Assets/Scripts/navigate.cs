@@ -28,15 +28,19 @@ public class navigate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var ray = new Ray(this.transform.position, this.transform.forward);
+        var ray = new Ray(aim.transform.position, this.transform.forward);
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 lookPlayer = player.transform.position + transform.position;
         if (Physics.SphereCast(ray, viewR, out hitdata,7, mask))
         {
-
+            Debug.Log(hitdata.transform.tag);
+            if (hitdata.transform.gameObject.tag == "rock" && !playerFound)
+            {
+                enemy.destination = hitdata.transform.position;
+            }
             if (hitdata.transform.gameObject.tag == "Player")
             {
-                Debug.Log(hitdata.transform.tag);
+                
                 playerFound = true;
                 if (Vector3.Dot(forward, lookPlayer) < 6 && Vector3.Dot(forward, lookPlayer) > -4 && Vector3.Distance(player.transform.position, transform.position) < 7)
                 {
@@ -47,10 +51,7 @@ public class navigate : MonoBehaviour
                     //if (Physics.SphereCast(ray, viewR, out hitdata, mask))
                     //{
 
-                    if (hitdata.transform.gameObject.tag == "rock" && !playerFound)
-                        {
-                            enemy.destination = hitdata.transform.position;
-                        }
+                   
                         if (hitdata.transform.gameObject.tag == "Player")
                         {
                             
@@ -67,7 +68,7 @@ public class navigate : MonoBehaviour
                         }
 
                     //}
-                    if (playerFound && shooter)
+                    if (inSight && shooter)
                     {
                         enemy.destination = transform.position;
 
@@ -84,12 +85,9 @@ public class navigate : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            inSight = false;
-        }
+        
        
-        if (!enemy.pathPending && enemy.remainingDistance < 0.1f && !playerFound)
+        if (!enemy.pathPending && enemy.remainingDistance < 0.1f && !playerFound && !inSight)
         {
             GotoNextPoint();
         }
@@ -120,7 +118,7 @@ public class navigate : MonoBehaviour
         }
         if (c.gameObject.tag == "Player")
         {
-
+            inSight = true;
             playerFound = true;
             StartCoroutine(Hunt());
         }
@@ -146,6 +144,7 @@ public class navigate : MonoBehaviour
         if (!inSight)
         {
             playerFound = false;
+            inSight = false;
             if (shooter)
             {
                 GotoNextPoint();
