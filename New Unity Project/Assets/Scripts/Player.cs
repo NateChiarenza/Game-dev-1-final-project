@@ -79,11 +79,11 @@ public class Player : MonoBehaviour
     {
         if(type == 1)
         {
-            GameObject bullet = Instantiate(rock, hand.transform.position + cam.transform.forward, cam.transform.rotation);
+            GameObject bullet = Instantiate(rock, hand.transform.position + cam.transform.forward, cam.transform.rotation * Quaternion.Euler(0f, 180f, 0f));
         }
         if (type == 2)
         {
-            GameObject arrow = Instantiate(arr, hand.transform.position + cam.transform.forward, cam.transform.rotation);
+            GameObject arrow = Instantiate(arr, hand.transform.position + cam.transform.forward, cam.transform.rotation * Quaternion.Euler(0f, 180f, 0f));
         }
 
 

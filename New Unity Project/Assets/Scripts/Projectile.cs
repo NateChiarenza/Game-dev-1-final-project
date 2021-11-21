@@ -16,7 +16,8 @@ public class Projectile : MonoBehaviour
     }
     void Start()
     {
-        m_Rigidbody.AddForce(m_Rigidbody.transform.forward * m_Speed);
+        m_Rigidbody.AddForce(-m_Rigidbody.transform.forward * m_Speed);
+
         Destroy(gameObject, m_Lifespan);
     }
     private void OnCollisionEnter(Collision c)
