@@ -10,6 +10,10 @@ TagManager:
   - Arrow
   - bad arrow
   - Player Aim
+  - patroll1
+  - patroll2
+  - patroll3
+  - PowerBox
   layers:
   - Default
   - TransparentFX

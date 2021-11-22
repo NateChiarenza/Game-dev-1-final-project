@@ -53,12 +53,13 @@
     <UnityVersion>2020.3.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\navigate.cs" />
-    <Compile Include="Assets\Scripts\Mainmenu.cs" />
+    <Compile Include="Assets\Prefabs\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Prefabs\Scripts\Player.cs" />
+    <Compile Include="Assets\Prefabs\Scripts\Mainmenu.cs" />
+    <Compile Include="Assets\Prefabs\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Prefabs\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Prefabs\Scripts\navigate.cs" />
+    <Compile Include="Assets\Prefabs\Scripts\PlayerUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
