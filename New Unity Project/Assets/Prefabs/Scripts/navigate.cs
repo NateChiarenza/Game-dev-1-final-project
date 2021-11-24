@@ -20,6 +20,7 @@ public class navigate : MonoBehaviour
     bool canFire = true;
     string area;
     public int A=1;
+    bool canhunt = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,52 +58,35 @@ public class navigate : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 lookPlayer = transform.position - player.transform.position;
         
-        if (Vector3.Dot(forward.normalized, lookPlayer.normalized) < -.3f && Vector3.Dot(forward.normalized, lookPlayer.normalized) > -1.0f && Vector3.Distance(forward, lookPlayer) < 8.0f)
+        if (Vector3.Dot(forward.normalized, lookPlayer.normalized) < -.3f && Vector3.Dot(forward.normalized, lookPlayer.normalized) > -1.0f && Vector3.Distance(forward, lookPlayer) < 6.0f)
         {
             inSight = true;
-
-            if (Physics.SphereCast(ray, viewR, out hitdata, mask))
+            playerFound = true;
+            if (canhunt)
             {
+                canhunt = false;
+                StartCoroutine(Hunt());
+                
+            }
+            
+            player.GetComponent<Player>().detected = true;
 
-                if (hitdata.transform.gameObject.tag == "rock" && !playerFound)
+            if (!shooter)
+            {
+                enemy.destination = player.transform.position;
+            }
+            else
+            {
+                
+                enemy.destination = transform.position;
+
+                enemy.transform.LookAt(player.transform.Find("Main Camera").Find("Target").transform.position);
+                if (canFire)
                 {
-                    enemy.destination = hitdata.transform.position;
-                }
-                if (hitdata.transform.gameObject.tag == "Player")
-                {
-
-                    playerFound = true;
-
-
-                    if (hitdata.transform.gameObject.tag == "Player")
-                    {
-                        player.GetComponent<Player>().detected = true;
-
-                        if (!shooter)
-                        {
-                            enemy.destination = player.transform.position;
-                        }
-                        else
-                        {
-                            enemy.destination = transform.position;
-                        }
-
-                        StartCoroutine(Hunt());
-                    }
-                    if (inSight && shooter)
-                    {
-                        enemy.destination = transform.position;
-
-                        enemy.transform.LookAt(player.transform.Find("Main Camera").Find("Target").transform.position);
-                        if (canFire)
-                        {
-                            canFire = false;
-                            GameObject arrow = Instantiate(arr, aim.position + aim.forward, aim.rotation * Quaternion.Euler(0f, 180f, 0f));
-                            arrow.gameObject.tag = "bad arrow";
-                            StartCoroutine(fire());
-                        }
-
-                    }
+                    canFire = false;
+                    GameObject arrow = Instantiate(arr, aim.position + aim.forward, aim.rotation * Quaternion.Euler(0f, 180f, 0f));
+                    arrow.gameObject.tag = "bad arrow";
+                    StartCoroutine(fire());
                 }
             }
         }
@@ -110,10 +94,23 @@ public class navigate : MonoBehaviour
         {
             inSight = false;
         }
-            
-        
-        
-       
+         if (Physics.SphereCast(ray, viewR, out hitdata, mask))
+         {
+                Debug.Log(hitdata.transform.gameObject.tag);
+                if (hitdata.transform.gameObject.tag == "rock" && !playerFound)
+                {
+                    enemy.destination = hitdata.transform.position;
+                } 
+                if (hitdata.transform.gameObject.tag == "Floor")
+                {
+                    inSight = false; 
+                }    
+           
+        }
+
+
+
+
         if (!enemy.pathPending && enemy.remainingDistance < 0.1f && !playerFound && !inSight)
         {
             GotoNextPoint();
@@ -141,6 +138,7 @@ public class navigate : MonoBehaviour
     {
         if(c.gameObject.tag == "rock" || c.gameObject.tag == "Arrow")
         {
+            
             Destroy(c.gameObject);
         }
         if (c.gameObject.tag == "Player")
@@ -172,16 +170,14 @@ public class navigate : MonoBehaviour
             {
                 GotoNextPoint();
             }
+            canhunt = true;
         }
        
     }
     private IEnumerator fire()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         canFire = true;
     }
-    private void OnDestroy()
-    {
-        player.GetComponent<Player>().detected = false;
-    }
+    
 }

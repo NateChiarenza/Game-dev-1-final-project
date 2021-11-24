@@ -101,17 +101,27 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerStay(Collider t)
     {
-        if(t.gameObject.tag == "PowerBox")
+        if(t.gameObject.tag == "PowerBox" && !leave)
         {
+           GetComponentInChildren<PlayerUI>().Interact.text = "Press E to turn of the powerbox"; 
             if(Input.GetAxis("Interact") == 1)
             {
                 leave = true;
+                GetComponentInChildren<PlayerUI>().Interact.text = "";
+                var lights = GameObject.FindGameObjectsWithTag("Light");
+                foreach (var light in lights)
+                {
+                    light.gameObject.SetActive(false);
+
+                }
             }
         }
         if (t.gameObject.tag == "Finish" && leave)
         {
+            GetComponentInChildren<PlayerUI>().Interact.text = "Press E to Leave";
             if (Input.GetAxis("Interact") == 1)
             {
+                GetComponentInChildren<PlayerUI>().Interact.text = "";
                 SceneManager.LoadScene(level);
                 level++;
             }

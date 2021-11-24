@@ -8,6 +8,7 @@ public class PlayerUI : MonoBehaviour
     public Text arrows;
     public Text Timer;
     public Text detected;
+    public Text Interact;
     GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class PlayerUI : MonoBehaviour
         player = GameObject.Find("Player");
         health.text = player.GetComponent<Player>().hp.ToString();
         arrows.text = player.GetComponent<Player>().arrowsLeft.ToString();
+        Interact.text = "";
     }
 
     // Update is called once per frame
@@ -31,5 +33,6 @@ public class PlayerUI : MonoBehaviour
         {
             detected.text = "";
         }
+        
     }
 }
