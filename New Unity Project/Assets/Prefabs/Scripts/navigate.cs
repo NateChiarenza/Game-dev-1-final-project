@@ -56,36 +56,39 @@ public class navigate : MonoBehaviour
         var ray = new Ray(aim.transform.position, aim.transform.forward);
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 lookPlayer = transform.position - player.transform.position;
-       
-        if (Physics.SphereCast(ray, viewR, out hitdata,5, mask))
+        
+        if (Vector3.Dot(forward.normalized, lookPlayer.normalized) < -.3f && Vector3.Dot(forward.normalized, lookPlayer.normalized) > -1.0f && Vector3.Distance(forward, lookPlayer) < 8.0f)
         {
-            
-            if (hitdata.transform.gameObject.tag == "rock" && !playerFound)
-            {
-                enemy.destination = hitdata.transform.position;
-            }
-            if (hitdata.transform.gameObject.tag == "Player")
-            {
-                
-                playerFound = true;
-                if (Vector3.Dot(forward, lookPlayer) < 1 && Vector3.Dot(forward, lookPlayer) > -5)
-                {
-                    inSight = true;
-                        if (hitdata.transform.gameObject.tag == "Player")
-                        {
-                        player.GetComponent<Player>().detected = true;
-                            
-                            if (!shooter)
-                            {
-                                enemy.destination = player.transform.position;
-                            }
-                            else
-                            {
-                                enemy.destination = transform.position;
-                            }
+            inSight = true;
 
-                            StartCoroutine(Hunt());
+            if (Physics.SphereCast(ray, viewR, out hitdata, mask))
+            {
+
+                if (hitdata.transform.gameObject.tag == "rock" && !playerFound)
+                {
+                    enemy.destination = hitdata.transform.position;
+                }
+                if (hitdata.transform.gameObject.tag == "Player")
+                {
+
+                    playerFound = true;
+
+
+                    if (hitdata.transform.gameObject.tag == "Player")
+                    {
+                        player.GetComponent<Player>().detected = true;
+
+                        if (!shooter)
+                        {
+                            enemy.destination = player.transform.position;
                         }
+                        else
+                        {
+                            enemy.destination = transform.position;
+                        }
+
+                        StartCoroutine(Hunt());
+                    }
                     if (inSight && shooter)
                     {
                         enemy.destination = transform.position;
@@ -101,12 +104,14 @@ public class navigate : MonoBehaviour
 
                     }
                 }
-                else
-                {
-                    inSight = false;
-                }
             }
         }
+        else
+        {
+            inSight = false;
+        }
+            
+        
         
        
         if (!enemy.pathPending && enemy.remainingDistance < 0.1f && !playerFound && !inSight)
