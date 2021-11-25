@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     public static int level = 2;
     public int arrowsLeft = 10;
     public bool detected = false;
+    bool failsafe = true;
+    public Animator anime;
+    public bool walking = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,21 +31,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxis("Mouse ScrollWheel") < 0)
+        anime.SetBool("Walking", walking);
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && throwable)
         {
-            item--;
-            if(item < 1)
-            {
-                item = 2;
-            }
+            throwable = false;
+            anime.SetBool("Switch", true);
+            StartCoroutine(swap(1));
+           
+           
+            
+           
+            
         }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && throwable)
         {
-            item = (item +1) %3;
-            if (item == 0 )
-            {
-                item = 1;
-            }
+            throwable = false;
+            anime.SetBool("Switch", true);
+            StartCoroutine(swap(2));
+            
+           
+
         }
         if(item == 1)
         {
@@ -50,9 +58,13 @@ public class Player : MonoBehaviour
             Equip2.SetActive(false);
             if (Input.GetAxis("Fire1") == 1 && throwable)
             {
+                anime.SetBool("Fire", true);
                 throwable = false;
-                fire(1);
+                
+                
+                
                 StartCoroutine(timer());
+                
             }
         }
         
@@ -62,11 +74,18 @@ public class Player : MonoBehaviour
             Equip2.SetActive(true);
             if (Input.GetAxis("Fire1") == 1 && throwable && arrowsLeft >0)
             {
+                anime.SetBool("Bow", true);
                 throwable = false;
                 arrowsLeft--;
                 fire(2);
                 StartCoroutine(timer());
+                
             }
+        }
+        if (detected && failsafe)
+        {
+            failsafe = false;
+            StartCoroutine(detectedFailSafe());
         }
         
     }
@@ -93,11 +112,54 @@ public class Player : MonoBehaviour
 
 
     }
+    private IEnumerator detectedFailSafe()
+    {
+
+        yield return new WaitForSeconds(15.0f);
+        detected = false;
+        failsafe = true;
+    }
     private IEnumerator timer()
     {
 
-        yield return new WaitForSeconds(2.0f);
+       
+        if (item == 1)
+        {
+            yield return new WaitForSeconds(.8f);
+            anime.SetBool("Fire", false);
+            fire(1);
+        }
+        else
+        {
+            yield return new WaitForSeconds(.05f);
+            anime.SetBool("Bow", false);
+        }
+        yield return new WaitForSeconds(1f);
         throwable = true;
+    }
+    private IEnumerator swap(int i)
+    {
+        yield return new WaitForSeconds(.3f);
+        if (i == 1)
+        {
+            item--;
+            if (item < 1)
+            {
+                item = 2;
+            }
+        }
+        else
+        {
+            item = (item + 1) % 3;
+            if (item == 0)
+            {
+                item = 1;
+            }
+        }
+        anime.SetBool("Switch", false);
+        throwable = true;
+
+
     }
     private void OnTriggerStay(Collider t)
     {
@@ -126,5 +188,9 @@ public class Player : MonoBehaviour
                 level++;
             }
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        GetComponentInChildren<PlayerUI>().Interact.text = "";
     }
 }

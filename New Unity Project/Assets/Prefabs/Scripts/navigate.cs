@@ -77,8 +77,15 @@ public class navigate : MonoBehaviour
             }
             else
             {
+                if(Vector3.Distance(transform.position, player.transform.position) < 4)
+                {
+                    enemy.destination = transform.position;
+                }
+                else
+                {
+                    enemy.destination = player.transform.position;
+                }
                 
-                enemy.destination = transform.position;
 
                 enemy.transform.LookAt(player.transform.Find("Main Camera").Find("Target").transform.position);
                 if (canFire)
@@ -96,7 +103,7 @@ public class navigate : MonoBehaviour
         }
          if (Physics.SphereCast(ray, viewR, out hitdata, mask))
          {
-                Debug.Log(hitdata.transform.gameObject.tag);
+                
                 if (hitdata.transform.gameObject.tag == "rock" && !playerFound)
                 {
                     enemy.destination = hitdata.transform.position;

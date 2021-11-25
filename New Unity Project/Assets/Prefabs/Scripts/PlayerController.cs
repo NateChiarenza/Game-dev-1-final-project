@@ -34,6 +34,14 @@ public class PlayerController : MonoBehaviour
     {
         H = Input.GetAxisRaw("Horizontal");
         V = Input.GetAxisRaw("Vertical");
+        if (H != 0 || V!=0)
+        {
+            GetComponent<Player>().walking = true;
+        }
+        else
+        {
+            GetComponent<Player>().walking = false;
+        }
         if (lookable)
         {
             cH += camHSpeed * Input.GetAxis("Mouse X");
