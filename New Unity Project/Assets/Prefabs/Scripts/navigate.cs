@@ -21,6 +21,8 @@ public class navigate : MonoBehaviour
     string area;
     public int A=1;
     bool canhunt = true;
+    bool readyTo = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class navigate : MonoBehaviour
             default:
                 break;
         }
+        enemy.avoidancePriority = Random.Range(1, 100);
 
         int n = 2;
         for (int i = 0; i < points.Length; i++)
@@ -79,16 +82,22 @@ public class navigate : MonoBehaviour
             {
                 if(Vector3.Distance(transform.position, player.transform.position) < 4)
                 {
+                    GetComponent<Enemy>().walking = false;
+                    StartCoroutine(timer());
+                    GetComponent<Enemy>().shooting = true;
                     enemy.destination = transform.position;
                 }
                 else
                 {
+                    readyTo = false;
+                    GetComponent<Enemy>().walking = true;
+                    GetComponent<Enemy>().shooting = false;
                     enemy.destination = player.transform.position;
                 }
                 
 
                 enemy.transform.LookAt(player.transform.Find("Main Camera").Find("Target").transform.position);
-                if (canFire)
+                if (canFire && readyTo)
                 {
                     canFire = false;
                     GameObject arrow = Instantiate(arr, aim.position + aim.forward, aim.rotation * Quaternion.Euler(0f, 180f, 0f));
@@ -115,7 +124,7 @@ public class navigate : MonoBehaviour
            
         }
 
-
+        
 
 
         if (!enemy.pathPending && enemy.remainingDistance < 0.1f && !playerFound && !inSight)
@@ -129,6 +138,7 @@ public class navigate : MonoBehaviour
     }
     void GotoNextPoint()
     {
+       
         // Returns if no points have been set up
         if (points.Length == 0)
             return;
@@ -186,5 +196,9 @@ public class navigate : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         canFire = true;
     }
-    
+    private IEnumerator timer()
+    {
+        yield return new WaitForSeconds(1);
+        readyTo = true;
+    }
 }
