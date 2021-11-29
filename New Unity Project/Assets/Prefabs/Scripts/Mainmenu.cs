@@ -11,9 +11,30 @@ public class Mainmenu : MonoBehaviour
     public AudioMixer volume;
     public static bool gamePaused = false;
     public GameObject pauseScreen;
-
+    public GameObject FailScreen;
+    public bool main = false;
+    private void Start()
+    {
+        if (main)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+    }
     private void Update()
     {
+        if (!main)
+        {
+            if (GameObject.Find("Player").GetComponent<Player>().dead)
+            {
+                FailScreen.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                PlayerController.lookable = false;
+                Time.timeScale = 0f;
+            }
+        }
+       
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gamePaused)
@@ -43,7 +64,7 @@ public class Mainmenu : MonoBehaviour
     }
     public void nextLevel()
     {
-            SceneManager.LoadScene("Jail_house");
+            SceneManager.LoadScene(1);
     }
     public void ChangeVolume(float v)
     {
@@ -72,5 +93,14 @@ public class Mainmenu : MonoBehaviour
         Time.timeScale = 1f;
         gamePaused = false;
         PlayerController.lookable = true;
+    }
+    public void restart()
+    {
+        Scene retry = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(retry.buildIndex);
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 public class Player : MonoBehaviour
 {
     public int hp;
@@ -16,16 +17,22 @@ public class Player : MonoBehaviour
     public GameObject Equip1;
     public GameObject Equip2;
     public bool leave = false;
-    public static int level = 2;
+    public bool Diamond = false;
+    public static int level = 1;
     public int arrowsLeft = 10;
     public bool detected = false;
     bool failsafe = true;
     public Animator anime;
     public bool walking = false;
+    public GameObject[] points;
+    public AudioSource source;
+    public AudioClip clip;
+    public bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
+        source = GameObject.Find("HM_crossbow_finished").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -96,7 +103,7 @@ public class Player : MonoBehaviour
 
         if(hp <= 0)
         {
-            
+            dead = true;
         }
     }
     void fire(int type)
@@ -178,14 +185,48 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        if (t.gameObject.tag == "Diamond Box" && !Diamond)
+        {
+            GetComponentInChildren<PlayerUI>().Interact.text = "Press E to open the Diamond Gate";
+            if (Input.GetAxis("Interact") == 1)
+            {
+                source.PlayOneShot(clip);
+                Diamond = true;
+                GameObject.Find("gate").SetActive(false);
+                GetComponentInChildren<PlayerUI>().Interact.text = "";
+               
+            }
+        }
+        if (t.gameObject.tag == "Diamond" && Diamond)
+        {
+            GetComponentInChildren<PlayerUI>().Interact.text = "Press E to take the Dimond";
+            if (Input.GetAxis("Interact") == 1)
+            {
+                leave = true;
+                GameObject.Find("Diamond").SetActive(false);
+                GetComponentInChildren<PlayerUI>().Interact.text = "";
+                
+                foreach (var e in points)
+                {
+                    e.gameObject.SetActive(true);
+                }
+
+            }
+        }
         if (t.gameObject.tag == "Finish" && leave)
         {
             GetComponentInChildren<PlayerUI>().Interact.text = "Press E to Leave";
             if (Input.GetAxis("Interact") == 1)
             {
+                leave = false;
                 GetComponentInChildren<PlayerUI>().Interact.text = "";
-                SceneManager.LoadScene(level);
                 level++;
+                if (level >= 4)
+                {
+                    level = 0;
+                }
+                SceneManager.LoadScene(level);
+                
             }
         }
     }

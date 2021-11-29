@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_menu.unity
     guid: 48b3ca9509b4292419e82ae75abd33a9
   - enabled: 1
-    path: Assets/Scenes/Jail_house.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/OutsideM.unity
     guid: 103d6adbb7bb80f48b4c9910b71cee6b
+  - enabled: 1
+    path: Assets/Scenes/Jail_house.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/InsideM.unity
     guid: 638e95477e7a3554886482f8910e962b

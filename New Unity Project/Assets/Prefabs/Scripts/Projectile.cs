@@ -18,6 +18,10 @@ public class Projectile : MonoBehaviour
     }
     void Start()
     {
+        if (!isRock &&  this.tag !="bad arrow")
+        {
+            arrow = GameObject.Find("HM_crossbow_finished").GetComponent<AudioSource>();
+        }
         m_Rigidbody.AddForce(-m_Rigidbody.transform.forward * m_Speed);
         if (!isRock)
         {
@@ -35,7 +39,7 @@ public class Projectile : MonoBehaviour
                 arrow.PlayOneShot(clip);
                 isRock = false;
             }
-            if (c.gameObject.tag == "Enemy")
+            if (c.gameObject.tag == "Enemy" || c.gameObject.tag == "Respawn")
             {
                 c.gameObject.GetComponent<Enemy>().TakeDamage(2);
                 Destroy(gameObject);
@@ -50,7 +54,7 @@ public class Projectile : MonoBehaviour
         }
         else if(this.gameObject.tag == "Arrow")
         {
-            if (c.gameObject.tag == "Enemy")
+            if (c.gameObject.tag == "Enemy"|| c.gameObject.tag == "Respawn")
             {
                 c.gameObject.GetComponent<Enemy>().TakeDamage(50);
                 Destroy(gameObject);

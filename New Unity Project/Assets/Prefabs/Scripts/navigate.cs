@@ -20,11 +20,13 @@ public class navigate : MonoBehaviour
     bool canFire = true;
     string area;
     public int A=1;
-    bool canhunt = true;
+    public bool canhunt = true;
     bool readyTo = false;
+    public int range;
     
+ 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         switch (A)
         {
@@ -40,12 +42,18 @@ public class navigate : MonoBehaviour
             default:
                 break;
         }
-        enemy.avoidancePriority = Random.Range(1, 100);
+        enemy.avoidancePriority = Random.Range(1, 30);
 
         int n = 2;
+        int temp = -1;
         for (int i = 0; i < points.Length; i++)
         {
             n = Random.Range(0, GameObject.FindGameObjectsWithTag(area).Length-1);
+            if(n == temp)
+            {
+                n = Random.Range(0, GameObject.FindGameObjectsWithTag(area).Length - 1);
+            }
+            temp = n;
             points[i] = GameObject.FindGameObjectsWithTag(area)[n].transform;
         }
         GotoNextPoint();
@@ -60,18 +68,20 @@ public class navigate : MonoBehaviour
         var ray = new Ray(aim.transform.position, aim.transform.forward);
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 lookPlayer = transform.position - player.transform.position;
-        
-        if (Vector3.Dot(forward.normalized, lookPlayer.normalized) < -.3f && Vector3.Dot(forward.normalized, lookPlayer.normalized) > -1.0f && Vector3.Distance(forward, lookPlayer) < 6.0f)
+        if (canhunt)
+        {
+            canhunt = false;
+            StartCoroutine(Hunt());
+
+        }
+        if (Vector3.Dot(forward.normalized, lookPlayer.normalized) < -.3f && Vector3.Dot(forward.normalized, lookPlayer.normalized) > -1.0f && Vector3.Distance(forward, lookPlayer) < range)
         {
             inSight = true;
             playerFound = true;
-            if (canhunt)
-            {
-                canhunt = false;
+
+            if (playerFound){
                 StartCoroutine(Hunt());
-                
             }
-            
             player.GetComponent<Player>().detected = true;
 
             if (!shooter)
@@ -104,7 +114,12 @@ public class navigate : MonoBehaviour
                     arrow.gameObject.tag = "bad arrow";
                     StartCoroutine(fire());
                 }
+                if (playerFound && !shooter)
+                {
+                    enemy.destination = player.transform.position;
+                }
             }
+
         }
         else
         {
@@ -131,10 +146,7 @@ public class navigate : MonoBehaviour
         {
             GotoNextPoint();
         }
-        if (playerFound && !shooter)
-        {
-            enemy.destination = player.transform.position;
-        }
+       
     }
     void GotoNextPoint()
     {
@@ -183,11 +195,10 @@ public class navigate : MonoBehaviour
             playerFound = false;
             inSight = false;
             player.GetComponent<Player>().detected = false;
-            if (shooter)
-            {
+           
                 GotoNextPoint();
-            }
-            canhunt = true;
+            
+            canhunt = false;
         }
        
     }
