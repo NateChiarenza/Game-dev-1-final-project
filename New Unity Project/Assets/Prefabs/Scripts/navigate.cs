@@ -90,19 +90,27 @@ public class navigate : MonoBehaviour
             }
             else
             {
-                if(Vector3.Distance(transform.position, player.transform.position) < 4)
+                if(Vector3.Distance(transform.position, player.transform.position) < 7 && Vector3.Distance(transform.position, player.transform.position) > 2)
                 {
+
                     GetComponent<Enemy>().walking = false;
                     StartCoroutine(timer());
                     GetComponent<Enemy>().shooting = true;
                     enemy.destination = transform.position;
+                }
+                else if(Vector3.Distance(transform.position, player.transform.position) > 7 )
+                {
+                    readyTo = false;
+                    GetComponent<Enemy>().walking = true;
+                    GetComponent<Enemy>().shooting = false;
+                    enemy.destination = player.transform.position;
                 }
                 else
                 {
                     readyTo = false;
                     GetComponent<Enemy>().walking = true;
                     GetComponent<Enemy>().shooting = false;
-                    enemy.destination = player.transform.position;
+                    enemy.destination = new Vector3(player.transform.position.x + 3, player.transform.position.y, player.transform.position.z + 3);
                 }
                 
 
@@ -163,7 +171,7 @@ public class navigate : MonoBehaviour
         destPoint = (destPoint + 1) % points.Length;
     }
 
-    private void OnCollisionStay(Collision c)
+    private void OnCollisionEnter(Collision c)
     {
         if(c.gameObject.tag == "rock" || c.gameObject.tag == "Arrow")
         {
@@ -174,6 +182,7 @@ public class navigate : MonoBehaviour
         {
             inSight = true;
             playerFound = true;
+            transform.LookAt(c.transform.position);
             StartCoroutine(Hunt());
         }
 
@@ -209,7 +218,7 @@ public class navigate : MonoBehaviour
     }
     private IEnumerator timer()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         readyTo = true;
     }
 }

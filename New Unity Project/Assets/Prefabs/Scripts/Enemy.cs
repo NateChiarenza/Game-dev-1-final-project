@@ -39,7 +39,10 @@ public class Enemy : MonoBehaviour
             anime.SetBool("Punch", true);
             attack = false;
             StartCoroutine(Attack(c));
-            
+            var apple = gameObject.GetComponent<navigate>().inSight;
+            apple = true;
+            var appl = GetComponent<navigate>().playerFound == true;
+            appl = true;
         }
     }
     IEnumerator Attack(Collision c)

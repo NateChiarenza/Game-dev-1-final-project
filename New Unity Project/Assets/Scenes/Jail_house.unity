@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 72755367}
   m_Layer: 0
   m_Name: office (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4278,7 +4278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: viewR
@@ -4287,6 +4287,10 @@ PrefabInstance:
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: shooter
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602223, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: avoidancePriority
@@ -5028,7 +5032,7 @@ GameObject:
   - component: {fileID: 280836383}
   m_Layer: 0
   m_Name: office (7)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -7052,11 +7056,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: shooter
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: points.Array.data[1]
@@ -7631,7 +7639,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17466
+  m_Name: pb_Mesh25516
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7822,11 +7830,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: viewR
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: points.Array.size
@@ -8454,6 +8466,25 @@ Transform:
   m_Father: {fileID: 743586899}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &410811536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132147746134726, guid: 642d2364d4432e84c9320f8ea4582af6, type: 3}
+  m_PrefabInstance: {fileID: 1773558248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &410811539
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410811536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1792611187212926931, guid: aa7d28b9149fd204da47e20402b6f958, type: 3}
 --- !u!4 &416298074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1540314278389970435, guid: e0844b8d4029b344a94105b5997d2120, type: 3}
@@ -8465,7 +8496,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17656
+  m_Name: pb_Mesh25714
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8810,7 +8841,7 @@ GameObject:
   - component: {fileID: 528120064}
   m_Layer: 0
   m_Name: office (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -10738,7 +10769,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17356
+  m_Name: pb_Mesh25402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10984,7 +11015,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17078
+  m_Name: pb_Mesh25122
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13574,7 +13605,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh207840
+  m_Name: pb_Mesh25564
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13768,7 +13799,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17722
+  m_Name: pb_Mesh25784
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14186,7 +14217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: viewR
@@ -14195,6 +14226,10 @@ PrefabInstance:
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: shooter
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1834577551, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14636,11 +14671,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: viewR
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1834577551, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15103,7 +15142,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17388
+  m_Name: pb_Mesh25436
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15469,7 +15508,7 @@ GameObject:
   - component: {fileID: 804317509}
   m_Layer: 0
   m_Name: office (9)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -17540,7 +17579,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17058
+  m_Name: pb_Mesh25102
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17726,7 +17765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: viewR
@@ -17735,6 +17774,10 @@ PrefabInstance:
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: shooter
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1834577551, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20521,6 +20564,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0844b8d4029b344a94105b5997d2120, type: 3}
+--- !u!1 &1025966383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1660673974993304340, guid: 642d2364d4432e84c9320f8ea4582af6, type: 3}
+  m_PrefabInstance: {fileID: 1773558248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1025966386
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025966383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!4 &1054524601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2303072098982318325, guid: 4a86933ccfb6ab14e840f25d6ae284e8, type: 3}
@@ -20643,7 +20705,7 @@ GameObject:
   - component: {fileID: 1091571554}
   m_Layer: 0
   m_Name: office (4)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -22947,7 +23009,7 @@ GameObject:
   - component: {fileID: 1174496559}
   m_Layer: 0
   m_Name: office (3)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -25235,7 +25297,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17568
+  m_Name: pb_Mesh25626
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27211,7 +27273,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17146
+  m_Name: pb_Mesh25180
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27461,7 +27523,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17226
+  m_Name: pb_Mesh25266
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -28950,7 +29012,7 @@ GameObject:
   - component: {fileID: 1462734530}
   m_Layer: 0
   m_Name: office
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -30878,7 +30940,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17584
+  m_Name: pb_Mesh25642
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -34603,7 +34665,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17436
+  m_Name: pb_Mesh25486
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -35285,11 +35347,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: viewR
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1834577551, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -35787,7 +35853,7 @@ GameObject:
   - component: {fileID: 1669949556}
   m_Layer: 0
   m_Name: office (6)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -37696,7 +37762,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17532
+  m_Name: pb_Mesh25586
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -38066,6 +38132,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1204655284, guid: 642d2364d4432e84c9320f8ea4582af6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204655284, guid: 642d2364d4432e84c9320f8ea4582af6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.473
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204655284, guid: 642d2364d4432e84c9320f8ea4582af6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.195
+      objectReference: {fileID: 0}
     - target: {fileID: 4005907983595000103, guid: 642d2364d4432e84c9320f8ea4582af6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -38393,7 +38471,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17268
+  m_Name: pb_Mesh25310
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39040,7 +39118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: range
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: viewR
@@ -39049,6 +39127,10 @@ PrefabInstance:
     - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: shooter
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684602222, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
+      propertyPath: huntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1834577551, guid: 3141b4e06d498a841a7f3706372496dc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -39432,7 +39514,7 @@ GameObject:
   - component: {fileID: 2018550012}
   m_Layer: 0
   m_Name: office (8)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -42250,18 +42332,6 @@ PrefabInstance:
     - target: {fileID: 3869516486433416213, guid: 4b6893a2b7a84db46ad0a27b3b46139e, type: 3}
       propertyPath: m_Name
       value: Pause menue
-      objectReference: {fileID: 0}
-    - target: {fileID: 5895481045627431841, guid: 4b6893a2b7a84db46ad0a27b3b46139e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -7.499939
-      objectReference: {fileID: 0}
-    - target: {fileID: 5895481047224069406, guid: 4b6893a2b7a84db46ad0a27b3b46139e, type: 3}
-      propertyPath: volume
-      value: 
-      objectReference: {fileID: 24100000, guid: 65548b68259d780428ba18b7233a4a2f, type: 2}
-    - target: {fileID: 5895481047721745916, guid: 4b6893a2b7a84db46ad0a27b3b46139e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.8138428
       objectReference: {fileID: 0}
     - target: {fileID: 8002741175133271489, guid: 4b6893a2b7a84db46ad0a27b3b46139e, type: 3}
       propertyPath: m_RootOrder

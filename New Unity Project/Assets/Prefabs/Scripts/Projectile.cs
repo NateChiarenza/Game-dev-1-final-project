@@ -8,13 +8,13 @@ public class Projectile : MonoBehaviour
     public float m_Lifespan = 3f; // this is the projectile's lifespan (in seconds)
     public bool isRock = false;
     private Rigidbody m_Rigidbody;
-    GameObject player;
+    public GameObject player;
     public AudioSource arrow;
     public AudioClip clip;
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("Player");
     }
     void Start()
     {
@@ -47,9 +47,11 @@ public class Projectile : MonoBehaviour
         }
         if(this.gameObject.tag == "bad arrow")
         {
+            Debug.Log("hello");
             if(c.gameObject.tag == "Player")
             {
-                player.GetComponent<Player>().TakeDamage(1);
+                Debug.Log("hit");
+                player.GetComponent<Player>().TakeDamage(2);
             }
         }
         else if(this.gameObject.tag == "Arrow")

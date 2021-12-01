@@ -64,6 +64,7 @@ public class Mainmenu : MonoBehaviour
     }
     public void nextLevel()
     {
+            Player.level++;
             SceneManager.LoadScene(1);
     }
     public void ChangeVolume(float v)

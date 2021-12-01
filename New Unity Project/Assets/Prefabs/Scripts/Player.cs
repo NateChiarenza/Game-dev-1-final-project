@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public GameObject Equip2;
     public bool leave = false;
     public bool Diamond = false;
-    public static int level = 1;
+    public static int level = 0;
     public int arrowsLeft = 10;
     public bool detected = false;
     bool failsafe = true;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
-        source = GameObject.Find("HM_crossbow_finished").GetComponent<AudioSource>();
+        source = GameObject.Find("Player").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
     private IEnumerator detectedFailSafe()
     {
 
-        yield return new WaitForSeconds(15.0f);
+        yield return new WaitForSeconds(3.0f);
         detected = false;
         failsafe = true;
     }

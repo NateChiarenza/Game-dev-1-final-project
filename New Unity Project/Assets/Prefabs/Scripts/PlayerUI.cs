@@ -17,6 +17,7 @@ public class PlayerUI : MonoBehaviour
         health.text = player.GetComponent<Player>().hp.ToString();
         arrows.text = player.GetComponent<Player>().arrowsLeft.ToString();
         Interact.text = "";
+
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class PlayerUI : MonoBehaviour
     {
         health.text = player.GetComponent<Player>().hp.ToString();
         arrows.text = player.GetComponent<Player>().arrowsLeft.ToString();
-        Timer.text = System.TimeSpan.FromSeconds((int)Time.timeSinceLevelLoad).ToString();
+        Timer.text = System.TimeSpan.FromSeconds((int)Time.fixedTime).ToString();
         if (player.GetComponent<Player>().detected)
         {
             detected.text = "DETECTED";
