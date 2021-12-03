@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
         }
         if(this.gameObject.tag == "bad arrow")
         {
-            Debug.Log("hello");
+            
             if(c.gameObject.tag == "Player")
             {
                 Debug.Log("hit");

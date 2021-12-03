@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public bool leave = false;
     public bool Diamond = false;
     public static int level = 0;
-    public int arrowsLeft = 10;
+    public static int arrowsLeft = 3;
     public bool detected = false;
     bool failsafe = true;
     public Animator anime;
@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         anime.SetBool("Walking", walking);
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && throwable)
         {

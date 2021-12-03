@@ -15,7 +15,7 @@ public class PlayerUI : MonoBehaviour
     {
         player = GameObject.Find("Player");
         health.text = player.GetComponent<Player>().hp.ToString();
-        arrows.text = player.GetComponent<Player>().arrowsLeft.ToString();
+        arrows.text = Player.arrowsLeft.ToString();
         Interact.text = "";
 
     }
@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         health.text = player.GetComponent<Player>().hp.ToString();
-        arrows.text = player.GetComponent<Player>().arrowsLeft.ToString();
+        arrows.text = Player.arrowsLeft.ToString();
         Timer.text = System.TimeSpan.FromSeconds((int)Time.fixedTime).ToString();
         if (player.GetComponent<Player>().detected)
         {

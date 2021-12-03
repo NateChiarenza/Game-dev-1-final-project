@@ -13,9 +13,11 @@ public class navigate : MonoBehaviour
     public float huntTime = 5.0f;
     public float viewR;
     RaycastHit hitdata;
+    RaycastHit hitdata1;
+    RaycastHit hitdata2;
     public bool shooter = false;
     public GameObject arr;
-    public Transform aim;
+    public Transform[] aim;
     public bool inSight = false;
     bool canFire = true;
     string area;
@@ -65,19 +67,29 @@ public class navigate : MonoBehaviour
     void Update()
     {
         
-        var ray = new Ray(aim.transform.position, aim.transform.forward);
+        var ray = new Ray(aim[0].transform.position, aim[0].transform.forward);
+        var ray2 = new Ray(aim[1].transform.position, aim[1].transform.forward);
+        var ray3 = new Ray(aim[2].transform.position, aim[2].transform.forward);
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 lookPlayer = transform.position - player.transform.position;
+
+        
         if (canhunt)
         {
             canhunt = false;
             StartCoroutine(Hunt());
 
         }
-        if (Vector3.Dot(forward.normalized, lookPlayer.normalized) < -.3f && Vector3.Dot(forward.normalized, lookPlayer.normalized) > -1.0f && Vector3.Distance(forward, lookPlayer) < range)
+        if (Vector3.Dot(forward.normalized, lookPlayer.normalized) < -.3f && Vector3.Dot(forward.normalized, lookPlayer.normalized) > -1.0f && Vector3.Distance(forward, lookPlayer) < range && ((hitdata.transform != null && hitdata.transform.tag == "Player") || (hitdata1.transform != null && hitdata1.transform.tag == "Player") || (hitdata2.transform != null && hitdata2.transform.tag == "Player")))
         {
             inSight = true;
             playerFound = true;
+            if (hitdata.transform != null && hitdata.transform.tag == "Floor")
+            {
+                inSight = false;
+                playerFound = false;
+            }
+           
 
             if (playerFound){
                 StartCoroutine(Hunt());
@@ -118,7 +130,7 @@ public class navigate : MonoBehaviour
                 if (canFire && readyTo)
                 {
                     canFire = false;
-                    GameObject arrow = Instantiate(arr, aim.position + aim.forward, aim.rotation * Quaternion.Euler(0f, 180f, 0f));
+                    GameObject arrow = Instantiate(arr, aim[0].position + aim[0].forward, aim[0].rotation * Quaternion.Euler(0f, 180f, 0f));
                     arrow.gameObject.tag = "bad arrow";
                     StartCoroutine(fire());
                 }
@@ -146,8 +158,20 @@ public class navigate : MonoBehaviour
                 }    
            
         }
+        if (Physics.SphereCast(ray2, viewR, out hitdata1, mask))
+        {
 
-        
+         
+
+        }
+        if (Physics.SphereCast(ray3, viewR, out hitdata2, mask))
+        {
+
+          
+
+        }
+
+
 
 
         if (!enemy.pathPending && enemy.remainingDistance < 0.1f && !playerFound && !inSight)

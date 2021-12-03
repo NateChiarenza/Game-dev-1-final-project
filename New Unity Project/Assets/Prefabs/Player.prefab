@@ -854,6 +854,7 @@ MonoBehaviour:
   speed: 5
   camHSpeed: 2
   camVSpeed: 2
+  cH: 0
 --- !u!82 &8974970271744311239
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1480,6 +1481,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8479946352540021262, guid: 64e066d5cfd9f7349bcafbeefbd777bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e489b54a78f27b4783bf3c8f8f800bd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e066d5cfd9f7349bcafbeefbd777bf, type: 3}
 --- !u!1 &919132147746134726 stripped

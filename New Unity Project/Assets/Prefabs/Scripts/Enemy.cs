@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public Animator anime;
     public bool walking = true;
     public bool shooting = false;
+    public GameObject ragdoll;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
 
         if (hp <= 0)
         {
+            Instantiate(ragdoll, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
